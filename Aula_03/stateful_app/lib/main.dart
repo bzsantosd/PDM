@@ -1,31 +1,41 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 void main() {
   runApp(MaterialApp(home: PaginaContador()));
 }
 
-class PaginaContador extends StatefulWidget{
+class PaginaContador extends StatefulWidget {
   @override
-  PaginaContadorState createState() => PaginaContadorState
+  _PaginaContadorState createState() => _PaginaContadorState();
 }
 
-class PaginaContadorState extends State<PaginaContador> {
-  int contador = 0;
+class _PaginaContadorState extends State<PaginaContador> {
+int contador = 0;
 
-  void increment() {
+  void main() {
     setState(() {
-      contador++;
+      int max = 1;
+      int min = 10;
+
+ int sorteado =Random().nextInt(max - min + 1 ) + min;
+ contador = sorteado;
+
     });
   }
 
   @override
-   widget build(BuildContext context) {
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("Meu App Interativo")),
-      body: Center (child: Text("Cliques: $contador",),)
-      style: TextStyle(fontSize: 30),
+      body: Center(
+        child: Text("Numero soriado: $contador", style: TextStyle(fontSize: 30)),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: main,
+        child: Icon(Icons.add),
       ),
-    )
+    );
   }
 }
